@@ -6,7 +6,6 @@ import dan200.computercraft.api.turtle.ITurtleAccess;
 import dan200.computercraft.api.turtle.TurtleCommand;
 import dan200.computercraft.api.turtle.TurtleCommandResult;
 import dan200.computercraft.shared.turtle.TurtleUtil;
-import dan200.computercraft.shared.util.DirectionUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
@@ -17,8 +16,6 @@ import net.minecraft.world.phys.Vec3;
 
 /**
  * Activates (right-clicks) the block or entity in front of the turtle.
- * Allows turtles to interact with crafting tables, furnaces, levers,
- * buttons, and any other block that responds to right-click.
  */
 public class TurtleActivateCommand implements TurtleCommand {
     private final InteractDirection direction;
@@ -29,8 +26,8 @@ public class TurtleActivateCommand implements TurtleCommand {
 
     @Override
     public TurtleCommandResult execute(ITurtleAccess turtle) {
-        Direction dir = DirectionUtil.toDirection(direction, turtle.getDirection());
-
+        Direction dir = direction.toWorldDir(turtle);
+        
         TurtlePlayer turtlePlayer = TurtlePlayer.getWithPosition(
             turtle, turtle.getPosition().relative(dir), dir
         );
@@ -55,9 +52,9 @@ public class TurtleActivateCommand implements TurtleCommand {
             false
         );
 
-        // Try interacting with the block
+        // Use the block's use method (standard right-click)
         InteractionResult result = world.getBlockState(targetPos)
-            .useWithoutItem(world, turtlePlayer.player(), hitResult);
+            .use(world, turtlePlayer.player(), InteractionHand.MAIN_HAND, hitResult);
 
         TurtleUtil.stopConsuming(turtle);
 
