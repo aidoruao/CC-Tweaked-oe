@@ -253,10 +253,8 @@ public class TurtleAPI implements ILuaAPI {
      * @cc.since 1.118.0-oe
      * @see #activate
      */
-    @LuaFunction
     public final MethodResult activateDown() {
         return trackCommand(new TurtleActivateCommand(InteractDirection.DOWN));
-    }
     }
 
     /**
