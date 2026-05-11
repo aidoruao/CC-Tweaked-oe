@@ -211,55 +211,6 @@ public class TurtleAPI implements ILuaAPI {
     }
 
     /**
-     * Activate (right-click) the block in front of the turtle.
-     * <p>
-     * Unlike {@link #place}, this performs a full right-click interaction
-     * on the block in front of the turtle. This allows turtles to open
-     * crafting table GUIs, flip levers, press buttons, interact with
-     * furnaces, and use any block that responds to a right-click.
-     * <p>
-     * This is the sovereign right-click, governed by the TruthSystems
-     * Merkle Notary and Yeshua audit layer.
-     *
-     * @return The turtle command result.
-     * @cc.treturn boolean Whether the activation succeeded.
-     * @cc.treturn string|nil The reason the activation failed.
-     * @cc.since 1.118.0-oe
-     * @see #place For placing blocks without interaction.
-     */
-    @LuaFunction
-    public final MethodResult activate() {
-        return trackCommand(new TurtleActivateCommand(InteractDirection.FORWARD));
-    }
-
-    /**
-     * Activate (right-click) the block above the turtle.
-     *
-     * @return The turtle command result.
-     * @cc.treturn boolean Whether the activation succeeded.
-     * @cc.since 1.118.0-oe
-     * @see #activate
-     */
-    @LuaFunction
-    public final MethodResult activateUp() {
-        return trackCommand(new TurtleActivateCommand(InteractDirection.UP));
-    }
-
-    /**
-     * Activate (right-click) the block below the turtle.
-     *
-     * @return The turtle command result.
-     * @cc.treturn boolean Whether the activation succeeded.
-     * @cc.since 1.118.0-oe
-     * @see #activate
-     */
-    @LuaFunction
-    public final MethodResult activateDown() {
-        return trackCommand(new TurtleActivateCommand(InteractDirection.DOWN));
-    }
-    }
-
-    /**
      * Place a block or item into the world in front of the turtle.
      * <p>
      * "Placing" an item allows it to interact with blocks and entities in front of the turtle. For instance, buckets
