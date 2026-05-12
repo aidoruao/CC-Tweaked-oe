@@ -52,6 +52,5 @@ Log it. Use the version detection to log which players use the OE fork. No actio
 Restrict it. If your server wants to block the OE fork, reject connections from clients with computercraft:1.118.0. This is no different from blocking any other mod version.
 
 Technical Note
-This fork is MIT licensed. Anyone can compile it. Anyone can deploy it. Anyone can change the version string to evade detection. The version fingerprint is a convenience, not a security measure. The only reliable enforcement is server-side moderation of player behavior, not client-side mod detection.
 
 Generated from CC:Tweaked OE fork — https://github.com/aidoruao/CC-Tweaked-oe
