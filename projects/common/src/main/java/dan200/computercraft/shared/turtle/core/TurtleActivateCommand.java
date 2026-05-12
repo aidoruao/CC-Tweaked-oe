@@ -56,7 +56,6 @@ public class TurtleActivateCommand implements TurtleCommand {
         InteractionResult result = world.getBlockState(targetPos)
             .use(world, turtlePlayer.player(), InteractionHand.MAIN_HAND, hitResult);
 
-        TurtleUtil.stopConsuming(turtle);
 
         if (result.consumesAction()) {
             return TurtleCommandResult.success();
